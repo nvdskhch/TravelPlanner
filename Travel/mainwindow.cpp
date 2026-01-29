@@ -170,7 +170,7 @@ void MainWindow::setupListPage() {
 
     QHBoxLayout *filterLayout = new QHBoxLayout();
     checkShowFutureOnly = new QCheckBox("Показывать только предстоящие поездки");
-    connect(checkShowFutureOnly, &QCheckBox::checkStateChanged, this, &MainWindow::updateTable);
+    connect(checkShowFutureOnly, &QCheckBox::toggled, this, &MainWindow::updateTable);
 
     filterLayout->addWidget(checkShowFutureOnly);
     filterLayout->addStretch();
@@ -482,3 +482,4 @@ void MainWindow::exportToPDF() {
 
     QMessageBox::information(this, "Экспорт", "Отчет успешно сохранен!");
 }
+
