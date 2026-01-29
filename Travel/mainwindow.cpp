@@ -483,3 +483,4 @@ void MainWindow::exportToPDF() {
     QMessageBox::information(this, "Экспорт", "Отчет успешно сохранен!");
 }
 
+
