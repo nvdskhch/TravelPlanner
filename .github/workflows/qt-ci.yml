@@ -1,0 +1,40 @@
+name: Qt Build & Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.6.0'
+        host: 'linux'
+        target: 'desktop'
+        arch: 'gcc_64'
+
+    - name: Install Dependencies
+      run: sudo apt-get install -y ninja-build cmake build-essential libgl1-mesa-dev
+
+    # 1. Сборка основного приложения
+    - name: Configure App
+      run: cmake -B build-app -S Travel -G Ninja
+      
+    - name: Build App
+      run: cmake --build build-app
+
+    # 2. Сборка и запуск тестов
+    - name: Configure Tests
+      run: cmake -B build-tests -S TravelTests -G Ninja
+
+    - name: Build Tests
+      run: cmake --build build-tests
+
+    - name: Run Unit Tests
+      working-directory: build-tests
+      run: ./TravelTests
