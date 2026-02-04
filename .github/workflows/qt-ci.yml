@@ -4,37 +4,35 @@ on: [push, pull_request]
 
 jobs:
   build:
+    name: Build and Test on Ubuntu
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v3
-      with:
-        version: '6.6.0'
-        host: 'linux'
-        target: 'desktop'
-        arch: 'gcc_64'
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.6.0'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'gcc_64'
 
-    - name: Install Dependencies
-      run: sudo apt-get install -y ninja-build cmake build-essential libgl1-mesa-dev
+      - name: Install Dependencies (Ninja & CMake)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build cmake build-essential
 
-    # 1. Сборка основного приложения
-    - name: Configure App
-      run: cmake -B build-app -S Travel -G Ninja
-      
-    - name: Build App
-      run: cmake --build build-app
+      - name: Configure Project
+        run: cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Debug
 
-    # 2. Сборка и запуск тестов
-    - name: Configure Tests
-      run: cmake -B build-tests -S TravelTests -G Ninja
+      - name: Build All
+        run: cmake --build build --parallel
 
-    - name: Build Tests
-      run: cmake --build build-tests
-
-    - name: Run Unit Tests
-      working-directory: build-tests
-      run: ./TravelTests
+      - name: Run Tests
+        working-directory: build/TravelTests
+        run: |
+          # Запускаем скомпилированное тестовое приложение
+          # ctest --output-on-failure # Альтернативный вариант
+          ./TravelTests
