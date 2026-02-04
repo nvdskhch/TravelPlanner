@@ -15,17 +15,17 @@ add_executable(Travel
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    # mainwindow.ui - УДАЛИ ЭТУ СТРОКУ, если она там есть (мы же удалили файл)
     trip.cpp
     trip.h
     tripmanager.cpp
     tripmanager.h
     priceservice.cpp
     priceservice.h
-    trip.h trip.cpp
-    trip.h
-    trip.cpp
-    tripmanager.h tripmanager.cpp
-    priceservice.h priceservice.cpp
 )
 
 target_link_libraries(Travel PRIVATE Qt6::Widgets Qt6::Network Qt6::PrintSupport)
+
+# !!! ДОБАВИТЬ ЭТИ СТРОКИ В КОНЕЦ: !!!
+enable_testing()
+add_subdirectory(TravelTests)
