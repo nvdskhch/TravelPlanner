@@ -26,6 +26,5 @@ add_executable(Travel
 
 target_link_libraries(Travel PRIVATE Qt6::Widgets Qt6::Network Qt6::PrintSupport)
 
-# !!! ДОБАВИТЬ ЭТИ СТРОКИ В КОНЕЦ: !!!
 enable_testing()
 add_subdirectory(TravelTests)
