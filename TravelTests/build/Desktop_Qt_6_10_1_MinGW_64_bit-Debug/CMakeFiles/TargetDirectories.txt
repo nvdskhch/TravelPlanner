@@ -1,0 +1,6 @@
+C:/QtProjects/TravelTests/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/TravelTests.dir
+C:/QtProjects/TravelTests/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/test.dir
+C:/QtProjects/TravelTests/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/QtProjects/TravelTests/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/QtProjects/TravelTests/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/TravelTests_autogen_timestamp_deps.dir
+C:/QtProjects/TravelTests/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/TravelTests_autogen.dir

@@ -41,6 +41,13 @@ private slots:
     }
 
     void testTripManagerFileOperations() {
+        QString testFile = "test_trips.json";
+        TripManager::setCustomPath(testFile);
+
+        if (QFile::exists(testFile)) {
+            QFile::remove(testFile);
+        }
+
         Trip t1;
         t1.from = "TestCity";
         t1.to = "AnotherCity";
@@ -53,12 +60,13 @@ private slots:
 
         TripManager::saveTrips(trips);
 
-        QString path = TripManager::getFilePath();
-        QVERIFY(QFile::exists(path));
+        QVERIFY(QFile::exists(testFile));
 
         QList<Trip> loadedTrips = TripManager::loadTrips();
         QVERIFY(!loadedTrips.isEmpty());
         QCOMPARE(loadedTrips.first().from, QString("TestCity"));
+
+        QFile::remove(testFile);
     }
 };
 

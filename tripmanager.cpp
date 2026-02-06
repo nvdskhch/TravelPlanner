@@ -3,8 +3,19 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QStandardPaths>
+#include <QDir>
+#include <QFileInfo>
+
+QString TripManager::m_customPath = "";
+
+void TripManager::setCustomPath(const QString &path) {
+    m_customPath = path;
+}
 
 QString TripManager::getFilePath() {
+    if (!m_customPath.isEmpty()) {
+        return m_customPath;
+    }
     return QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/trips_v4.json";
 }
 
@@ -14,7 +25,16 @@ void TripManager::saveTrips(const QList<Trip> &trips) {
         arr.append(t.toJson());
     }
     QJsonDocument doc(arr);
-    QFile file(getFilePath());
+
+    QString path = getFilePath();
+
+    QFileInfo fileInfo(path);
+    QDir dir = fileInfo.dir();
+    if (!dir.exists()) {
+        dir.mkpath(".");
+    }
+
+    QFile file(path);
     if (file.open(QIODevice::WriteOnly)) {
         file.write(doc.toJson());
         file.close();
