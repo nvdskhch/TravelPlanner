@@ -59,7 +59,7 @@ void MainWindow::setupListPage() {
 
     QHBoxLayout *filterLayout = new QHBoxLayout();
     checkShowFutureOnly = new QCheckBox("Показывать только предстоящие поездки");
-    connect(checkShowFutureOnly, &QCheckBox::checkStateChanged, this, &MainWindow::updateTable);
+    connect(checkShowFutureOnly, &QCheckBox::stateChanged, this, &MainWindow::updateTable);
 
     filterLayout->addWidget(checkShowFutureOnly);
     filterLayout->addStretch();

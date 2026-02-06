@@ -33,6 +33,5 @@ jobs:
       - name: Run Tests
         working-directory: build/TravelTests
         run: |
-          # Запускаем скомпилированное тестовое приложение
-          # ctest --output-on-failure # Альтернативный вариант
+          # ctest --output-on-failure
           ./TravelTests
